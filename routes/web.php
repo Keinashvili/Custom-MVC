@@ -1,20 +1,28 @@
 <?php
 declare(strict_types=1);
 
-use app\app\core\config\Route;
+use app\app\core\Router;
 use app\app\Controllers\HomeController;
 
-Route::get('/', [HomeController::class, 'index']);
+$router = new Router();
 
-Route::get('/show/{id}', [HomeController::class, 'show']);
+$router->get('/', function (){
+    (new HomeController())->index();
+});
+
+//$router->get('/show/{id}', [HomeController::class, 'show']);
+
+$router->get('/show/{id}', function ($id){
+    (new HomeController())->show($id);
+});
 
 // for the {} curly braces if element (id) is not found it should make server 404 and display custom error message
-Route::post('/delete/{id}', [HomeController::class, 'destroy']);
+$router->post('/delete/{id}', [HomeController::class, 'destroy']);
 
-Route::get('/add', [HomeController::class, 'create']);
+$router->get('/add', [HomeController::class, 'create']);
 
-Route::post('/insert', [HomeController::class, 'store']);
+$router->post('/insert', [HomeController::class, 'store']);
 
-Route::get('/edit/{id}', [HomeController::class, 'edit']);
+$router->get('/edit/{id}', [HomeController::class, 'edit']);
 
-Route::post('/update/{id}', [HomeController::class, 'update']);
+$router->post('/update/{id}', [HomeController::class, 'update']);

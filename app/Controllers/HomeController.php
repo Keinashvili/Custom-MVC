@@ -11,7 +11,7 @@ class HomeController extends Controller
     public function index()
     {
         $products = Product::all();
-        return parent::view('index.php', compact('products'));
+        return $this->view('index.php', compact('products'));
     }
 
     public function show($id)

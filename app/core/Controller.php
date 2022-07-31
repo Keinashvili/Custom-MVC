@@ -4,7 +4,7 @@ namespace app\app\core;
 
 class Controller
 {
-    public static function view($path, $array = []){
+    public function view($path, $array = []){
         if ($array){
             foreach ($array as $key => $item){
                 $$key = $item;
