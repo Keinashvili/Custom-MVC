@@ -5,5 +5,5 @@
 
     <a href="/show/<?= $product->id ?>"><?= $product->title ?></a>
     <br>
-here
+
 <?php endforeach;?>

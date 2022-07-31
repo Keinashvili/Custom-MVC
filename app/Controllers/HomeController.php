@@ -11,13 +11,13 @@ class HomeController extends Controller
     public function index()
     {
         $products = Product::all();
-        return $this->view('index.php', compact('products'));
+        return parent::view('index.php', compact('products'));
     }
 
     public function show($id)
     {
         $products = Product::findOrFail($id);
-        return parent::view('show.php', compact('products')); // View function can only take one data and only with compact method
+        return parent::view('show.php', compact('products'));
     }
 
     public function create()

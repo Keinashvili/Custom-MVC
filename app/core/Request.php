@@ -2,11 +2,9 @@
 
 namespace app\app\core;
 
-use app\traits\Validate;
 
 abstract class Request
 {
-    use Validate;
 
     abstract public function validate();
 
