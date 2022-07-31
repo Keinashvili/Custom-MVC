@@ -11,7 +11,10 @@ class Router
         $action = trim($action, '/');
         $action = preg_replace('/{[^}]+}/', '(.+)', $action);
 
-        $this->routes[$action] = $callback;
+        $method = $_SERVER['REQUEST_METHOD'];
+        if ($method == 'GET'){
+            $this->routes[$action]=$callback;
+        }
     }
 
     public function post($action, $callback)
@@ -19,12 +22,14 @@ class Router
         $action = trim($action, '/');
         $action = preg_replace('/{[^}]+}/', '(.+)', $action);
 
-        $this->routes[$action] = $callback;
+        $method = $_SERVER['REQUEST_METHOD'];
+        if ($method == 'POST'){
+            $this->routes[$action]=$callback;
+        }
     }
 
-    public function run(): void
+    public function run($action): void
     {
-        $action = $_SERVER['REQUEST_URI'];
         $action = trim($action, '/');
 
         $callback = null;
@@ -39,7 +44,7 @@ class Router
         }
         if (!$callback || !is_callable($callback)){
             http_response_code(404);
-            echo "Route not Found";
+            echo "There is an error in your routing";
             exit();
         }
         echo call_user_func($callback, ...$params);

@@ -17,7 +17,7 @@ class HomeController extends Controller
     public function show($id)
     {
         $products = Product::findOrFail($id);
-        return parent::view('show.php', compact('products'));
+        return parent::view('show.php', compact('products')); // View function can only take one data and only with compact method
     }
 
     public function create()
