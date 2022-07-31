@@ -2,7 +2,7 @@
 
 namespace app\app\core;
 
-class Router
+class Router extends Model
 {
     public array $routes = [];
 
@@ -10,7 +10,7 @@ class Router
     {
         $action = trim($action, '/');
         $action = preg_replace('/{[^}]+}/', '(.+)', $action);
-
+        
         $method = $_SERVER['REQUEST_METHOD'];
         if ($method == 'GET'){
             $this->routes[$action]=$callback;
@@ -47,6 +47,7 @@ class Router
             echo "There is an error in your routing";
             exit();
         }
+
         echo call_user_func($callback, ...$params);
     }
 }

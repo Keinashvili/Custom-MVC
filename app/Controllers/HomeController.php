@@ -3,6 +3,7 @@
 namespace app\app\Controllers;
 
 use app\app\core\Controller;
+use app\app\core\Request;
 use app\models\Product;
 use app\requests\ProductRequest;
 
@@ -14,9 +15,14 @@ class HomeController extends Controller
         return parent::view('index.php', compact('products'));
     }
 
+
     public function show($id)
     {
         $products = Product::findOrFail($id);
+        if ($products['id'] != $id){
+            http_response_code(404);
+            exit();
+        }
         return parent::view('show.php', compact('products'));
     }
 
@@ -25,12 +31,12 @@ class HomeController extends Controller
         return parent::view('create.php');
     }
 
-    public function store()
+    public function store(ProductRequest $request)
     {
         Product::create([
-            'title' => 'cus_title',
-            'price' => 25,
-            'list_price' => 23,
+            'title' => $request->title,
+            'price' => $request->price,
+            'list_price' => $request->list_price,
             'brand' => 'testBrand',
             'image' => 'image',
             'description' => 'test description'
@@ -42,12 +48,30 @@ class HomeController extends Controller
     public function edit($id)
     {
         $products = Product::findOrFail($id);
+        if ($products['id'] != $id){
+            http_response_code(404);
+            exit();
+        }
         return parent::view('edit.php', compact('products'));
     }
 
-    public function update($id)
+    public function update(ProductRequest $request, $id)
     {
-        // TODO  should make custom requests for the validation and data
+//        $product = Product::findOrFail($id);
+//        $product->update(
+//            'title' => $request->title,
+//            'price' => $request->price,
+//            'list_price' => $request->list_price,
+//            'brand' => 'testBrand',
+//            'image' => 'image',
+//            'description' => 'test description'
+//        );
+        Product::update($id,[
+            'title' => $request->title,
+//            'price' => $request->price,
+//            'list_price' => $request->list_price,
+            ]);
+        header("Location: /");
     }
 
     public function destroy($id)

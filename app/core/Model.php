@@ -67,11 +67,11 @@ class Model extends Database
         }
 
         $sql = "INSERT INTO $table ($columns) VALUES ($values)";
-        $statement = self::pdo()->prepare($sql);
+        $statement = $static->pdo()->prepare($sql);
         $statement->execute($execute);
     }
 
-    public static function update(array $array, $id) // Not working
+    public static function update(int $id,array $array) // Not working
     {
         $columns = '';
         $values = '';
@@ -88,8 +88,8 @@ class Model extends Database
             $execute[":$key"] = $value;
         }
 
-        $sql = "UPDATE $table SET ($columns) VALUES ($values) WHERE id = $id";
-        $statement = self::pdo()->prepare($sql);
+        $sql = "UPDATE ($table) SET $columns, ($values) WHERE id = $id";
+        $statement = $static->pdo()->prepare($sql);
         $statement->execute($execute);
     }
 

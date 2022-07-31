@@ -2,7 +2,6 @@
 
 namespace app\requests;
 
-use app\app\core\Model;
 use app\app\core\Request;
 
 class ProductRequest extends Request
