@@ -48,6 +48,9 @@ class Router extends Model
             exit();
         }
 
-        echo call_user_func($callback, ...$params);
+        if(is_array($callback)){
+            $callback[0] = new $callback[0]();
+        }
+        call_user_func($callback, ...$params);
     }
 }

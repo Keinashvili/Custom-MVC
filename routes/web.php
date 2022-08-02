@@ -7,13 +7,16 @@ use app\requests\ProductRequest;
 
 $router = new Router();
 
-$router->get('/', function (){
-    (new HomeController())->index();
-});
+//$router->get('/', function (){
+//    (new HomeController())->index();
+//});
 
-$router->get('/show/{id}', function ($id){
-    (new HomeController())->show($id);
-});
+$router->get('/',[HomeController::class, 'index']);
+$router->get('/show/{id}',[HomeController::class, 'show']);
+
+//$router->get('/show/{id}', function ($id){
+//    (new HomeController())->show($id);
+//});
 
 $router->post('/delete/{id}', function ($id){
     (new HomeController())->destroy($id);

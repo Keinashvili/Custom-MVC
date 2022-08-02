@@ -88,7 +88,7 @@ class Model extends Database
             $execute[":$key"] = $value;
         }
 
-        $sql = "UPDATE $table SET $columns=$values WHERE id=$id";
+        $sql = "UPDATE $table SET ($columns)=$values WHERE id=$id";
         $statement = $static->pdo()->prepare($sql);
         $statement->execute($execute);
     }
