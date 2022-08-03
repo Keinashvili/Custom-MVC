@@ -33,13 +33,12 @@ class HomeController extends Controller
 
     public function store(ProductRequest $request)
     {
+
+        $request->validateData('/add');
         Product::create([
             'title' => $request->title,
             'price' => $request->price,
             'list_price' => $request->list_price,
-            'brand' => 'testBrand',
-            'image' => 'image',
-            'description' => 'test description'
         ]);
 
         header('Location: /');

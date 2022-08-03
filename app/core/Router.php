@@ -4,37 +4,37 @@ namespace app\app\core;
 
 class Router extends Model
 {
-    public array $routes = [];
+    public static array $routes = [];
 
-    public function get($action, $callback)
+    public static function get($action, $callback)
     {
         $action = trim($action, '/');
         $action = preg_replace('/{[^}]+}/', '(.+)', $action);
         
         $method = $_SERVER['REQUEST_METHOD'];
         if ($method == 'GET'){
-            $this->routes[$action]=$callback;
+            self::$routes[$action]=$callback;
         }
     }
 
-    public function post($action, $callback)
+    public static function post($action, $callback)
     {
         $action = trim($action, '/');
         $action = preg_replace('/{[^}]+}/', '(.+)', $action);
 
         $method = $_SERVER['REQUEST_METHOD'];
         if ($method == 'POST'){
-            $this->routes[$action]=$callback;
+            self::$routes[$action]=$callback;
         }
     }
 
-    public function run($action): void
+    public static function run($action): void
     {
         $action = trim($action, '/');
 
         $callback = null;
         $params =[];
-        foreach ($this->routes as $route => $handler) {
+        foreach (self::$routes as $route => $handler) {
             if (preg_match("%^{$route}$%", $action, $matches) === 1){
                 $callback = $handler;
                 unset($matches[0]);

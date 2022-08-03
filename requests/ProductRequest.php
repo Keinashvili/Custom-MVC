@@ -12,9 +12,6 @@ class ProductRequest extends Request
             'title'  => 'required',
             'price'  => 'required',
             'list_price' => 'required',
-            'brand' => 'required',
-            'image' => 'required',
-            'description' => 'required',
         ];
     }
 }

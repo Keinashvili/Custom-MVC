@@ -1,38 +1,41 @@
 <?php
 declare(strict_types=1);
 
-use app\app\core\Router;
+use app\app\core\config\Route;
+use app\app\Controllers\auth\LoginController;
+use app\app\Controllers\auth\RegisterController;
 use app\app\Controllers\HomeController;
 use app\requests\ProductRequest;
+use app\requests\UserRequest;
 
-$router = new Router();
 
-//$router->get('/', function (){
-//    (new HomeController())->index();
-//});
+Route::get('/',[HomeController::class, 'index']);
 
-$router->get('/',[HomeController::class, 'index']);
-$router->get('/show/{id}',[HomeController::class, 'show']);
+// CRUD Routes
+Route::get('/show/{id}',[HomeController::class, 'show']);
 
-//$router->get('/show/{id}', function ($id){
-//    (new HomeController())->show($id);
-//});
+Route::post('/delete/{id}', [HomeController::class, 'destroy']);
 
-$router->post('/delete/{id}', function ($id){
-    (new HomeController())->destroy($id);
+Route::get('/add', [HomeController::class, 'create']);
+
+//Route::post('/insert', [HomeController::class, 'store']);
+
+Route::post('/insert', function (){
+    (new HomeController())->store((new ProductRequest()));
 });
 
-$router->get('/add', function (){
-    (new HomeController())->create();
-});
-$router->post('/insert', function (){
-    (new HomeController())->store(new ProductRequest());
+Route::get('/edit/{id}', [HomeController::class, 'edit']);
+
+Route::post('/update/{id}', [HomeController::class, 'update']);
+
+// Auth Routes
+Route::get('/login', [LoginController::class, 'index']);
+
+Route::post('/login', [LoginController::class, 'login']);
+
+Route::get('/register', [RegisterController::class, 'index']);
+
+Route::post('/register', function (){
+    (new RegisterController())->register((new UserRequest()));
 });
 
-$router->get('/edit/{id}', function ($id){
-    (new HomeController())->edit($id);
-});
-
-$router->post('/update/{id}', function ($id){
-    (new HomeController())->update((new ProductRequest()), $id);
-});
