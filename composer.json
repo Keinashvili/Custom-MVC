@@ -1,13 +1,12 @@
 {
-    "name": "vukakeinashvili/custom-mvc",
+    "name": "vovakeinashvili/custom-mvc",
     "autoload": {
         "psr-4": {
             "app\\": "./"
         },
         "files": [
             "helpers/helpers.php",
-            "config.php",
-            "app/core/config/app.php"
+            "config.php"
         ]
     },
     "authors": [
@@ -17,8 +16,6 @@
         }
     ],
     "require": {
-      "ext-pdo": "*",
-      "ext-openssl": "*",
-      "ext-http": "*"
+        "ext-pdo": "*"
     }
 }

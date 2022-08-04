@@ -1,0 +1,39 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    min-height: 100vh;
+    font-family: 'Quicksand', sans-serif;
+
+}
+/* header */
+header{
+    display: flex;
+    padding: 1px 72px;
+    align-items: center;
+}
+.title{
+    margin: 27px 0 0 80px;
+}
+.blank{
+    width: 53%;
+}
+.lines{
+    width: 84%;
+    height: 1px;
+    border: 0 none;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: dimgrey;
+}
+footer {
+    text-align: center;
+    color: black;
+    bottom: 0;
+    width: 100%;
+    height: 78px;
+}
+footer p {
+    margin-top: 20px;
+}

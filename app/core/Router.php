@@ -2,22 +2,22 @@
 
 namespace app\app\core;
 
-class Router extends Model
+class Router
 {
     public static array $routes = [];
 
-    public static function get($action, $callback)
+    public static function get($action, $callback) : void
     {
         $action = trim($action, '/');
         $action = preg_replace('/{[^}]+}/', '(.+)', $action);
-        
+
         $method = $_SERVER['REQUEST_METHOD'];
         if ($method == 'GET'){
             self::$routes[$action]=$callback;
         }
     }
 
-    public static function post($action, $callback)
+    public static function post($action, $callback) : void
     {
         $action = trim($action, '/');
         $action = preg_replace('/{[^}]+}/', '(.+)', $action);

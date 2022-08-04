@@ -1,5 +1,4 @@
 <?php
-
 // define base url for the project
 define("ADDR","http://localhost:8080");
 

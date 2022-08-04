@@ -2,14 +2,12 @@
 
 namespace app\app\core;
 
-
 use app\traits\Validate;
 
 abstract class Request
 {
     use Validate;
 
-    public string $path;
     abstract public function validate();
 
     public function __construct()
@@ -17,14 +15,9 @@ abstract class Request
         $this->loadData();
     }
 
-    private function loadData()
+    private function loadData(): void
     {
-        foreach ($_POST as $itemKey => $itemValue) {
-            if (is_numeric($itemValue) && str_contains($itemValue, '.')) {
-                $itemValue = (double)$itemValue;
-            } elseif (is_numeric($itemValue)) {
-                $itemValue = (int)$itemValue;
-            }
+        foreach ($_POST as $itemKey => $itemValue){
 
             $this->{$itemKey} = $itemValue;
         }

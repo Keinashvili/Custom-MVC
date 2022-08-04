@@ -4,7 +4,7 @@ namespace app\traits;
 
 trait Validate
 {
-    public function validateData($path): void
+    public function validateData($path):void
     {
         $validated = $this->validate();
 
@@ -20,6 +20,7 @@ trait Validate
                 $_SESSION[$key] = $key . ' is required';
             }
         }
+
         if ($errors){
             header("Location: $path");
         }

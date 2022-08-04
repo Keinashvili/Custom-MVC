@@ -2,10 +2,10 @@
 
 namespace app\app\core;
 
-use app\app\Database\Database;
+use app\app\database\Database;
 use PDO;
 
-class Model extends Database
+abstract class Model extends Database
 {
     protected $pdo;
     protected $table;
@@ -71,7 +71,7 @@ class Model extends Database
         $statement->execute($execute);
     }
 
-    public static function update(int $id,array $array) // Probably working
+    public static function update(int $id,array $array) // Not working
     {
         $columns = '';
         $values = '';
@@ -102,8 +102,8 @@ class Model extends Database
         $sql = "DELETE FROM $table WHERE id = $id";
         $result = $connect->query($sql);
 
-        while (true) {
+//        while (true) {
             return $result->fetch(PDO::FETCH_ASSOC);
-        }
+//        }
     }
 }
