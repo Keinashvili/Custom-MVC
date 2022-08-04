@@ -4,18 +4,13 @@ use app\app\controllers\HomeController;
 use app\app\core\config\Route;
 use app\requests\ProductRequest;
 
-Route::get('/', function (){
-    (new HomeController())->index();
-});
+Route::get('/', [HomeController::class, 'index']);
 
-Route::get('/add', function (){
-    (new HomeController())->create();
-});
+Route::get('/add', [HomeController::class, 'create']);
 
+// Post action always should be defined like this
 Route::post('/insert', function (){
     (new HomeController())->store(new ProductRequest());
 });
 
-Route::post('/remove-product', function (){
-    (new HomeController())->destroy((new ProductRequest())->ids);
-});
+Route::post('/remove-product/{id}', [HomeController::class, 'index']);

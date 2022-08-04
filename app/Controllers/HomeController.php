@@ -14,8 +14,19 @@ class HomeController extends Controller
         return parent::view('index.php', compact('products'));
     }
 
+    public function show($id)
+    {
+        $products = Product::findOrFail($id);
+        if ($products['id'] != $id){
+            http_response_code(404);
+            exit();
+        }
+        return parent::view('show.php', compact('products'));
+    }
+
     public function create()
     {
+
         return parent::view('create.php');
     }
 
