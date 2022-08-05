@@ -10,42 +10,11 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $products = Product::all();
-        return parent::view('index.php', compact('products'));
+        return parent::view('index.php');
     }
 
-    public function show($id)
+    public function documentation()
     {
-        $products = Product::findOrFail($id);
-        if ($products['id'] != $id){
-            http_response_code(404);
-            exit();
-        }
-        return parent::view('show.php', compact('products'));
-    }
-
-    public function create()
-    {
-
-        return parent::view('create.php');
-    }
-
-    public function store(ProductRequest $request)
-    {
-        $request->validateData('/add');
-
-        Product::create([
-            'title' => $request->title,
-            'price' => $request->price,
-            'list_price' => $request->list_price,
-        ]);
-
-        header('Location: /');
-    }
-
-    public function destroy($id)
-    {
-        Product::delete($id);
-        header('Location: /');
+        return parent::view('documentation.php');
     }
 }
