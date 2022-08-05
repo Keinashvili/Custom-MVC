@@ -43,8 +43,8 @@ class Router
             }
         }
         if (!$callback || !is_callable($callback)){
-            http_response_code(404);
-            echo "There is an error in your routing";
+            $message = "There is an error in your routing";
+            renderView(404, 'errors/_404_.php', compact('message'));
             exit();
         }
 

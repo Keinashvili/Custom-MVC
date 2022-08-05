@@ -1,6 +1,9 @@
 <?php
 
-function renderView($code, $path, $array = []) {
+use JetBrains\PhpStorm\NoReturn;
+
+function renderView($code, $path, $array = []): bool
+{
     if ($array){
         foreach ($array as $key => $item){
             $$key = $item;

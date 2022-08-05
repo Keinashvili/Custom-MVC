@@ -13,8 +13,8 @@ class Controller
         ob_start();
         // If view doesn't exist it displays a custom error template
         if (!file_exists(__DIR__ . "/../../views/$path")) {
-            http_response_code(404);
-            renderView('errors/_404_.php');
+            $message = "View doesn't exist";
+            renderView(404,'errors/_404_.php', compact('message'));
             exit();
         }
         else {
