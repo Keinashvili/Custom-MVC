@@ -1,7 +1,7 @@
 # Custom-MVC
 This is my version of PHP MVC pattern
 
-I am new to php and tried to do mvc pattern on my own.
+I am new to php and tried to do mvc pattern on my own, using composer.
 I know it has lots of bugs but I am fixing it one by one 
 
 ## Project setup
