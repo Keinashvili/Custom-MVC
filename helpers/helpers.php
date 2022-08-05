@@ -1,11 +1,12 @@
 <?php
 
-function renderView($path, $array = []) {
+function renderView($code, $path, $array = []) {
     if ($array){
         foreach ($array as $key => $item){
             $$key = $item;
         }
     }
+    http_response_code($code);
     ob_start();
     require_once __DIR__ . "/../views/$path";
 
