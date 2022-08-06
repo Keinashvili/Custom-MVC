@@ -8,23 +8,6 @@ use PDO;
 abstract class Model extends Database
 {
     protected $table;
-    private static array $childrenArray = [];
-
-    private function pdo(): PDO
-    {
-        return parent::connect();
-    }
-
-    public static function all(): array
-    {
-        $static = new static();
-        $connect = $static->pdo();
-        $table = $static->table;
-        $sql = "SELECT * FROM $table";
-        $result = $connect->query($sql);
-
-        foreach ($result->fetchAll() as $key => $fetchArray) {
-  protected $table;
     private static $childrenArray = [];
 
     private function pdo(): PDO

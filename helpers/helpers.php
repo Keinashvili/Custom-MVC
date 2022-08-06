@@ -2,7 +2,7 @@
 
 use JetBrains\PhpStorm\NoReturn;
 
-function renderView($code, $path, $array = []): bool
+function renderErrorView($code, $path, $array = []): bool
 {
     if ($array){
         foreach ($array as $key => $item){
@@ -25,9 +25,6 @@ function dd(...$vars){
     exit();
 }
 
-function error($name): void
-{
-    if (key_exists($name,$_SESSION)){
-        echo $_SESSION[$name];
-    }
+function redirect($route){
+    header("Location: $route");
 }

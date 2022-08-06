@@ -3,7 +3,6 @@
 namespace app\app\Controllers;
 
 use app\app\core\Controller;
-use app\models\Product;
 
 class HomeController extends Controller
 {

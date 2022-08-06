@@ -264,8 +264,9 @@ class YourController extends Controller
         if ($products['id'] != $id){
             $error = 'The URL'. $_SERVER['REQUEST_URI'];
             renderView(404,'/errors/_404_.php', compact('error'));
+        } else {
+            return parent::view(&quot;index.php&quot;, compact(&quot;$var&quot;));
         }
-        return parent::view(&quot;index.php&quot;, compact(&quot;$var&quot;));
     }
 }
                                         </code></pre>
