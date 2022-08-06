@@ -17,5 +17,12 @@
     ],
     "require": {
         "ext-pdo": "*"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "prepend-autoloader": false,
+        "platform": {
+            "php": "8.0"
+        }
     }
 }
