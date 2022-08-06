@@ -1,13 +1,7 @@
 <?php
-// define base url for the project
-define("ADDR","http://localhost:8080");
+// Database properties
 
-
-/**
- * database configuration
- */
-
-define("DB_HOST","localhost");
-define("DB_USER","root");
+define("DB_HOST","");
+define("DB_USER","");
 define("DB_PASSWORD","");
-define("DB_NAME","php_ecommerce");
+define("DB_NAME","");
