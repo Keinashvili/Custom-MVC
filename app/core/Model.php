@@ -98,9 +98,7 @@ abstract class Model extends Database
         $table = $static->table;
         $sql = "DELETE FROM $table WHERE id = $id";
         $result = $connect->query($sql);
-
-//        while (true) {
-            return $result->fetch(PDO::FETCH_ASSOC);
-//        }
+        
+        return $result->fetch(PDO::FETCH_ASSOC);
     }
 }
