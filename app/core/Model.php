@@ -7,8 +7,24 @@ use PDO;
 
 abstract class Model extends Database
 {
-    protected $pdo;
     protected $table;
+    private static array $childrenArray = [];
+
+    private function pdo(): PDO
+    {
+        return parent::connect();
+    }
+
+    public static function all(): array
+    {
+        $static = new static();
+        $connect = $static->pdo();
+        $table = $static->table;
+        $sql = "SELECT * FROM $table";
+        $result = $connect->query($sql);
+
+        foreach ($result->fetchAll() as $key => $fetchArray) {
+  protected $table;
     private static $childrenArray = [];
 
     private function pdo(): PDO
@@ -68,7 +84,7 @@ abstract class Model extends Database
         $statement->execute($execute);
     }
 
-    public static function update(int $id,array $array) 
+    public static function update(int $id,array $array)
     {
         $execute = [];
 
@@ -79,8 +95,8 @@ abstract class Model extends Database
         foreach ($array as $key => $value){
             $sql = $sql . " " . $key . " = '" . $value . "', ";
         }
-        $newLeng = strlen($sql) - 2;
-        $sql = substr($sql, 0, $newLeng);
+        $len = strlen($sql) - 2;
+        $sql = substr($sql, 0, $len);
         $sql = $sql." WHERE id=$id ";
 
         $statement = $static->pdo()->prepare($sql);
@@ -95,7 +111,7 @@ abstract class Model extends Database
         $table = $static->table;
         $sql = "DELETE FROM $table WHERE id = $id";
         $result = $connect->query($sql);
-        
+
         return $result->fetch(PDO::FETCH_ASSOC);
     }
 }
