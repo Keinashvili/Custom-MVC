@@ -49,7 +49,7 @@ abstract class Model extends Database
 
     }
 
-    public static function create(array $array) // Not working
+    public static function create(array $array)
     {
         $columns = '';
         $values = '';
@@ -71,24 +71,21 @@ abstract class Model extends Database
         $statement->execute($execute);
     }
 
-    public static function update(int $id,array $array) // Not working
+    public static function update(int $id,array $array) 
     {
-        $columns = '';
-        $values = '';
-        $num = 0;
         $execute = [];
 
         $static = new static();
         $table = $static->table;
+        $sql = "UPDATE $table SET ";
 
-        foreach ($array as $key => $value) {
-            $num++;
-            $num != count($array) ? $columns .= "$key, " : $columns .= $key;
-            $num != count($array) ? $values .= ":$key, " : $values .= ":$key";
-            $execute[":$key"] = $value;
+        foreach ($array as $key => $value){
+            $sql = $sql . " " . $key . " = '" . $value . "', ";
         }
+        $newLeng = strlen($sql) - 2;
+        $sql = substr($sql, 0, $newLeng);
+        $sql = $sql." WHERE id=$id ";
 
-        $sql = "UPDATE $table SET ($columns)=$values WHERE id=$id";
         $statement = $static->pdo()->prepare($sql);
         $statement->execute($execute);
     }
