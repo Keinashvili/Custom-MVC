@@ -43,10 +43,7 @@ abstract class Model extends Database
         $sql = "SELECT * FROM $table WHERE id = $id";
         $result = $connect->query($sql);
 
-        while (true) {
-            return $result->fetch(PDO::FETCH_ASSOC);
-        }
-
+        return $result->fetch(PDO::FETCH_ASSOC);
     }
 
     public static function create(array $array)
