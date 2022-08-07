@@ -43,8 +43,8 @@ class Router
             }
         }
         if (!$callback || !is_callable($callback)){
-            $message = "There is an error in your routing";
-            renderView(404, 'errors/_404_.php', compact('message'));
+            $message = "Error! Route" . "<b style='font-style: italic; color: black;'> $_SERVER[REQUEST_URI] </b>". "doesn't exist or isn't defined!";
+            renderErrorView(404, 'errors/_404_.php', compact('message'));
             exit();
         }
 

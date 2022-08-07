@@ -28,3 +28,9 @@ function dd(...$vars){
 function redirect($route){
     header("Location: $route");
 }
+
+function error($name) {
+    if (key_exists($name, $_SESSION)){
+        echo $_SESSION[$name];
+    }
+}

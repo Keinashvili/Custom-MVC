@@ -67,7 +67,12 @@
                                     It is not recommended, to use on production, because it isn't fully tested.
                                     <br>
                                     If you fix any bug please contact me via email <a href="mailto:vovakeinashvili@gmail.com">vovakeinashvili@gmail.com</a> and I will include a fix!
+                                    <br>
+                                    You can also download mini web crud app based on my own mvc pattern. It will give you more idea about the project. <a href="https://github.com/Keinashvili/Custom-MVC-Crud-operation">Repo of the project.</a>
+                                    <br>
                                 </p>
+                                <b>Repo of the pattern:</b>
+                                <br>
                                 <a href="https://github.com/Keinashvili/Custom-MVC" class="btn btn-green" target="_blank"><i class="fas fa-download"></i>GitHub Repository</a>
                             </div>
                         </section><!--//doc-section-->
@@ -479,7 +484,7 @@ use app\app\core\Request;
 
 class YourRequest extends Request
 {
-    public function validate(): array
+    public function rules(): array
     {
         return [
             'first_column'  => 'required',
@@ -496,6 +501,35 @@ class YourRequest extends Request
                                     valid value or refreshing a page.
                                 </p>
                             </div><!--//code-block-->
+                                <div class="code-block">
+                                    <p>To display error messages I have implemented a function error.</p>
+                                    <pre><code class="language-php">&lt;!DOCTYPE html&gt;
+&lt;html lang="en">
+&lt;head>
+    &lt;meta charset="UTF-8">
+    &lt;meta http-equiv="X-UA-Compatible" content="IE=edge">
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0">
+    &lt;title>Document&lt;/title>
+    &lt;link rel="stylesheet" href="your.css">
+&lt;/head>
+&lt;body>
+    &lt;form action="/yourRoute" method="post">
+        &lt;label for="name">Name&lt;/label>
+        &lt;input type="text" name="name" id="name">
+        &lt;p class="error">&lt;?php error('name'); ?>&lt;/p>
+    &lt;/form>
+&lt;script src='your.js'>&lt;/script>
+&lt;/body>
+&lt;html>
+&lt;php session_destroy(); ?>
+                                        </code></pre>
+                                    <p>
+                                        <b>Note:</b> <span class="language-php">session_destroy(); </span> must be used in the end of the view!
+                                        It is used to refresh page after reloading it or resubmitting filled input fields.
+                                        <br>
+                                        <b>Note:</b> It only has required field. other validation will be added soon.
+                                    </p>
+                                </div><!--//code-block-->
                         </div><!--//section-block-->
                         </section><!--//doc-section-->
                     </div><!--//content-inner-->

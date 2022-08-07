@@ -6,7 +6,7 @@ trait Validate
 {
     public function validateData($path):void
     {
-        $validated = $this->validate();
+        $validated = $this->rules();
 
         $errors = [];
 
@@ -22,7 +22,7 @@ trait Validate
         }
 
         if ($errors){
-            header("Location: $path");
+            redirect($path);
         }
     }
 }

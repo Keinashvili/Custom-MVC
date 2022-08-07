@@ -8,7 +8,7 @@ abstract class Request
 {
     use Validate;
 
-    abstract public function validate();
+    abstract public function rules();
 
     public function __construct()
     {
