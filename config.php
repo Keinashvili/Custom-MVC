@@ -1,7 +1,8 @@
 <?php
 // Database properties
 
-define("DB_HOST","");
-define("DB_USER","");
-define("DB_PASSWORD","");
-define("DB_NAME","");
+define('DB_HOST', '');
+define('DB_DATABASE', '');
+define('DB_USERNAME', '');
+define('DB_PASSWORD', '');
+define('DB_PORT', '3306');

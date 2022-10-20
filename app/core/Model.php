@@ -5,15 +5,10 @@ namespace app\app\core;
 use app\app\database\Database;
 use PDO;
 
-abstract class Model extends Database
+class Model extends Database
 {
     protected $table;
     private static $childrenArray = [];
-
-    private function pdo(): PDO
-    {
-        return parent::connect();
-    }
 
     public static function all(): array
     {
@@ -86,7 +81,6 @@ abstract class Model extends Database
         $statement->execute($execute);
     }
 
-
     public static function delete($id)
     {
         $static = new static();
@@ -96,5 +90,23 @@ abstract class Model extends Database
         $result = $connect->query($sql);
 
         return $result->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public static function showTables()
+    {
+        $static = new static();
+        $connect = $static->pdo();
+        $query = $connect->prepare('show tables');
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_NUM);
+    }
+
+    public static function column($column, $table)
+    {
+        $static = new static();
+        $connect = $static->pdo();
+        $query = $connect->prepare("SELECT $column FROM $table");
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_NUM);
     }
 }

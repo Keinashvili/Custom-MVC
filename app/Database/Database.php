@@ -1,20 +1,23 @@
 <?php
 
-namespace app\app\database;
+namespace app\app\Database;
 
 use PDO;
 
 class Database
 {
-    private static PDO $pdo;
+    private $host = DB_HOST;
+    private $db = DB_DATABASE;
+    private $user = DB_USERNAME;
+    private $pass = DB_PASSWORD;
+    private $port = DB_PORT;
 
-    protected function connect() : PDO
+    protected static function pdo() : PDO
     {
-        $host = DB_HOST;
-        $dbName = DB_NAME;
-        self::$pdo = new PDO("mysql:host=$host;dbname=$dbName", DB_USER, DB_PASSWORD);
-        self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        self::$pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+        $static = new static();
+        $pdo = new PDO('mysql:host='.$static->host.'; port='.$static->port.'; dbname='.$static->db,$static->user,$static->pass);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
         return self::$pdo;
     }

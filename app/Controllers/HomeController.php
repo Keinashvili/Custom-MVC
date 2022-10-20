@@ -2,12 +2,11 @@
 
 namespace app\app\Controllers;
 
-use app\app\core\Controller;
 
-class HomeController extends Controller
+class HomeController
 {
     public function documentation()
     {
-        return parent::view('documentation.php');
+        return view('documentation.php');
     }
 }
