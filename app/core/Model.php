@@ -1,8 +1,8 @@
 <?php
 
-namespace app\app\core;
+namespace app\core;
 
-use app\app\database\Database;
+use app\Database\Database;
 use PDO;
 
 class Model extends Database
@@ -62,7 +62,7 @@ class Model extends Database
         $statement->execute($execute);
     }
 
-    public static function update(int $id,array $array)
+    public static function update(int $id, array $array)
     {
         $execute = [];
 
@@ -70,12 +70,12 @@ class Model extends Database
         $table = $static->table;
         $sql = "UPDATE $table SET ";
 
-        foreach ($array as $key => $value){
+        foreach ($array as $key => $value) {
             $sql = $sql . " " . $key . " = '" . $value . "', ";
         }
         $len = strlen($sql) - 2;
         $sql = substr($sql, 0, $len);
-        $sql = $sql." WHERE id=$id ";
+        $sql = $sql . " WHERE id=$id ";
 
         $statement = $static->pdo()->prepare($sql);
         $statement->execute($execute);

@@ -1,8 +1,12 @@
 <?php
 
-use app\app\controllers\HomeController;
-use app\app\core\Router;
+use app\Controllers\AuthController;
+use app\core\Router;
 
 Router::get('/', function (){
-    (new HomeController())->documentation();
+    echo "<a href='/register'>Register</a>";
+});
+
+Router::get('/register', function (){
+    (new AuthController())->index();
 });

@@ -2,7 +2,7 @@
     "name": "vovakeinashvili/custom-mvc",
     "autoload": {
         "psr-4": {
-            "app\\": "./"
+            "": "./"
         },
         "files": [
             "helpers/helpers.php",

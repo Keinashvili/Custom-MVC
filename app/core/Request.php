@@ -1,8 +1,8 @@
 <?php
 
-namespace app\app\core;
+namespace app\core;
 
-use app\traits\Validate;
+use traits\Validate;
 
 abstract class Request
 {
@@ -17,7 +17,7 @@ abstract class Request
 
     private function loadData(): void
     {
-        foreach ($_POST as $itemKey => $itemValue){
+        foreach ($_POST as $itemKey => $itemValue) {
 
             $this->{$itemKey} = $itemValue;
         }

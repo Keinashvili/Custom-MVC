@@ -18,10 +18,11 @@ if (!function_exists('renderErrorView')) {
     }
 }
 
-if (!function_exists('view')){
-    function view($path, $array = []){
-        if ($array){
-            foreach ($array as $key => $item){
+if (!function_exists('view')) {
+    function view($path, $array = [])
+    {
+        if ($array) {
+            foreach ($array as $key => $item) {
                 $$key = $item;
             }
         }
@@ -50,5 +51,11 @@ if (!function_exists('error')) {
         if (key_exists("$name", $_SESSION)) {
             echo $_SESSION["$name"];
         }
+    }
+}
+
+if (!function_exists('routes')){
+    function routes($routes){
+        include_once __DIR__."/../routes/$routes";
     }
 }
